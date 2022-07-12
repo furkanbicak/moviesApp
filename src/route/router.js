@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 
 import Home from "../components/Home.vue"
+import Movie from "../components/Movie.vue"
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,10 @@ export const router = new VueRouter({
         {
             path:"/",
             component: Home
+        },
+        {
+            path:"/movie/:id",
+            component: Movie
         }
     ]
 })
