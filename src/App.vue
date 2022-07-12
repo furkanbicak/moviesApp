@@ -1,28 +1,26 @@
 <template>
   <div id="app">
-    <p class="text-cyan-400">{{msg}}</p>
+      <div class="flex justify-between">
+        <Navbar />
+        <Searchbar />
+      </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Navbar from "./components/Header/Navbar.vue"
+import Searchbar from "./components/Header/Searchbar.vue"
+
 export default {
   name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+    components:{
+    Navbar,
+    Searchbar,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
