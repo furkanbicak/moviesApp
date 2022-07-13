@@ -1,16 +1,17 @@
 <template>
-    <div class="bg-blue-300">
-       <h1 class="text-2xl font-bold underline text-red-700">
-    Hello world!
-  </h1>
+    <div class="container mx-auto">
+      <PopularMovies />
     </div>
 </template>
 
 <script>
 import "tailwindcss/tailwind.css"
+import PopularMovies from "../components/PopularMovies.vue"
 
 export default{
-
+  components:{
+    PopularMovies
+  }
 }
 </script>
 
