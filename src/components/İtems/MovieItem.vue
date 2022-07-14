@@ -1,12 +1,17 @@
 <template>
     <div>
-       <router-link to="/movie/12">
-         <img src="https://i.pinimg.com/564x/93/4c/23/934c23e629f299722051058c7c8fda99.jpg" class="hover:opacity-75"/>
+       <router-link :to="`/movie/${movie.id}`">
+            <img 
+                :src    =   "posterPath"
+                class   =   "hover:opacity-75"
+            />
        </router-link>
-        <h3>2067</h3>
+        <h3>{{ this.movie.title }}</h3>
         <div>
-            47% | 2020-01-01 <br/> 
-            <span class="text-sm text-gray-500"> Sicence Fiction, Thriller, Drama </span>
+            {{this.movie.vote_average * 10 }}% | {{ this.movie.release_date }} <br/> 
+            <span class="text-sm text-gray-500"> 
+               <span :key="genre.id" v-for="(genre, index) in movie.genre_ids"> {{ genreTypeName(genre, index) }} </span>
+            </span>
         </div>
         
     </div>
@@ -14,7 +19,32 @@
 
 <script>
 export default {
-
+    props:{
+        movie: {
+            required: true,
+        },
+        genres: {
+            required: true,
+        }
+    },
+    computed:{
+        posterPath(){
+            return `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`
+        },
+    },
+    methods:{
+        genreTypeName(genreId, index){
+            for(const item of this.genres){
+                if(item.id == genreId){
+                    if(this.movie.genre_ids.length-1 === index){
+                        return item.name
+                    }else {
+                        return item.name + ","
+                    }
+                }
+            } 
+        }
+    }
 }
 </script>
 

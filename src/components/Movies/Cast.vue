@@ -3,33 +3,15 @@
         <h2 class="text-4xl font-semibold mb-5">Cast</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            <div class="mr-2">
+            
+            <div class="mr-2" :key="item.id" v-for="item in casts">
                 <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
+                    :src="item.profile_path===null ? `https://via.placeholder.com/300x450` : `https://image.tmdb.org/t/p/w500${item.profile_path}`" 
                     alt=""
                     class="w-64 hover:opacity-75 transition ease-in-out duration150"
                 />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
+                <span class="text-gray-300">{{item.name}} / {{item.character}}</span>
             </div>
-
-            <div class="mr-2">
-                <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
-                    alt=""
-                    class="w-64 hover:opacity-75 transition ease-in-out duration150"
-                />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
-            </div>
-
-            <div class="mr-2">
-                <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
-                    alt=""
-                    class="w-64 hover:opacity-75 transition ease-in-out duration150"
-                />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
-            </div>
-
 
         </div>
     </div>
@@ -37,6 +19,19 @@
 
 <script>
 export default {
+    props:{
+        casts:{
+            required: true
+        }
+    },
+    computed:{
+        profilePath(){
+            return `https://image.tmdb.org/t/p/w500${this.casts.profile_path}`
+        },
+    },
+    mounted(){
+        console.log("Hello")
+    }
 
 }
 </script>
