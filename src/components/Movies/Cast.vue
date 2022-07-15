@@ -24,15 +24,6 @@ export default {
             required: true
         }
     },
-    computed:{
-        profilePath(){
-            return `https://image.tmdb.org/t/p/w500${this.casts.profile_path}`
-        },
-    },
-    mounted(){
-        console.log("Hello")
-    }
-
 }
 </script>
 
