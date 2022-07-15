@@ -3,33 +3,14 @@
         <h2 class="text-4xl font-semibold mb-5">Images</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-            <div class="mr-2">
-                <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
+            
+            <div class="mr-2" :key="index" v-for="(item, index) in images">
+               <img 
+                    :src="movieImage(item)" 
                     alt=""
-                    class="w-64 hover:opacity-75 transition ease-in-out duration150"
+                    class="w-64 hover:opacity-75 transition ease-in-out duration150 p-2"
                 />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
             </div>
-
-            <div class="mr-2">
-                <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
-                    alt=""
-                    class="w-64 hover:opacity-75 transition ease-in-out duration150"
-                />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
-            </div>
-
-            <div class="mr-2">
-                <img 
-                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTrvdW7SGb21TFBzQKVS_QfvsleDzNt_8xT0bQxV0Pfqm25ZvHG" 
-                    alt=""
-                    class="w-64 hover:opacity-75 transition ease-in-out duration150"
-                />
-                <span class="text-gray-300">Arthur Fleck / Joker</span>
-            </div>
-
 
         </div>
     </div>
@@ -37,7 +18,18 @@
 
 <script>
 export default {
-
+    props:{
+        images:{
+            required:true
+        }
+    },
+    methods:{
+        movieImage(item){
+            return item.file_path === null ? 
+            `https://via.placeholder.com/300x450` : 
+            `https://image.tmdb.org/t/p/w500${item.file_path}`
+        }
+    }
 }
 </script>
 
