@@ -31,14 +31,14 @@
                     </div>
 
                     <div class="mt-5 mb-5">
-                        <a href="#" class="rounded bg-yellow-500 px-5 py-4">Play Trailer</a>
+                        <a :href="youtubeVideo" class="rounded bg-yellow-500 px-5 py-4">Play Trailer</a>
                         <a href="#" class="rounded bg-yellow-500 px-5 py-4">Favourite</a>
                     </div>
             </div>
         </div>
      
         <Cast :casts="casts"/>
-        <Images />
+        <Images :images="images" />
     </div>
 </template>
 
@@ -53,15 +53,26 @@ export default {
     data(){
         return{
             movie:[],
-            casts: null
+            images: null,
+            casts: null,
+            video: null
         }
     },
     methods:{
         async getMovie(movieId){
             const res = await this.$http.get(`/movie/${movieId}?append_to_response=credits,videos,images`)
             this.movie = res.data
+            this.images = res.data.images.backdrops
             this.casts = res.data.credits.cast
+            this.video = res.data.videos.results[0].key
+            console.log("Viedeo", this.video)
+            console.log("Movie", this.movie)
             console.log("Casts", this.casts)
+        }
+    },
+    computed:{
+        youtubeVideo(){
+            return `https://www.youtube.com/embed/${this.movie.videos.results[0].key}`
         }
     },
     mounted() {
